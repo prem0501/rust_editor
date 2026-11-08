@@ -1,6 +1,12 @@
 use yew::prelude::*;
 
-use crate::app::{center::wrapper::Center, providers::root_context_provider::AppContextProvider};
+use crate::app::{
+    center::wrapper::Center,
+    components::sidebar::sidebar::Sidebar,
+    providers::{
+        file_editor_provider::FileEditorStateProvider, root_context_provider::AppContextProvider,
+    },
+};
 
 mod center;
 mod components;
@@ -10,7 +16,12 @@ mod providers;
 pub fn App() -> Html {
     html! {
         <AppContextProvider>
-            <Center />
+            <FileEditorStateProvider>
+                <div class="app-wrapper">
+                    <Sidebar />
+                    <Center />
+                </div>
+            </FileEditorStateProvider>
         </AppContextProvider>
     }
 }

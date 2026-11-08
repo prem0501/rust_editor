@@ -2,6 +2,8 @@ use std::{rc::Rc, sync::LazyLock};
 
 use yew::prelude::*;
 
+use crate::app::providers::ActionDef;
+
 static LANGUAGES: LazyLock<Vec<String>> = LazyLock::new(|| {
     vec![
         "plain".to_string(),
@@ -15,18 +17,12 @@ pub struct AppState {
     pub current_lang: String,
     pub languages: Vec<String>,
 }
-
-pub struct ActionDef {
-    pub message: Actions,
-    pub payload: String,
-}
-
 pub enum Actions {
     SetLang,
 }
 
 impl Reducible for AppState {
-    type Action = ActionDef;
+    type Action = ActionDef<String, Actions>;
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         match action.message {

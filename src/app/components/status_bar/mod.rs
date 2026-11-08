@@ -6,6 +6,8 @@ pub mod lang_selector;
 #[component]
 pub fn StatusBar() -> Html {
     html! {
-      <LangSelector />
+      <div class="navbar-wrapper">
+        <LangSelector />
+      </div>
     }
 }
